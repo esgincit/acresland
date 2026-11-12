@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Listings — Acres Properties</title>
+  <meta name="description" content="Browse verified properties for sale and rent across Telangana & Andhra Pradesh — agriculture lands, houses, apartments and commercial spaces.">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="properties">
+
+  <div id="site-header"></div>
+
+  <section class="hero" style="padding:56px 0 96px">
+    <div class="container">
+      <span class="eyebrow">Property listings</span>
+      <h1 style="font-size:clamp(1.7rem,3.4vw,2.4rem)">Every acre, every home, one marketplace</h1>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+
+      <!-- Filters toolbar -->
+      <form class="toolbar" id="filterForm">
+        <div class="search-grid" style="grid-template-columns:1fr 1fr 1.4fr 1fr 1fr 1fr auto">
+          <div class="field">
+            <label for="fStatus">Status</label>
+            <select id="fStatus" name="status">
+              <option value="">Any Status</option>
+              <option value="For Sale">For Sale</option>
+              <option value="For Rent">For Rent</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="fType">Type</label>
+            <select id="fType" name="type">
+              <option value="">Any Type</option>
+              <option value="Agriculture">Agriculture</option>
+              <option value="Commercial">Commercial</option>
+              <option value="House">House</option>
+              <option value="Apartment">Apartment</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="fLocation">Location</label>
+            <input id="fLocation" name="location" type="text" placeholder="City or locality…">
+          </div>
+          <div class="field">
+            <label for="fMin">Min Budget</label>
+            <select id="fMin" name="min">
+              <option value="">Min</option>
+              <option value="25">₹25 L</option>
+              <option value="50">₹50 L</option>
+              <option value="100">₹1 Cr</option>
+              <option value="200">₹2 Cr</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="fMax">Max Budget</label>
+            <select id="fMax" name="max">
+              <option value="">Max</option>
+              <option value="25">₹25 L</option>
+              <option value="50">₹50 L</option>
+              <option value="100">₹1 Cr</option>
+              <option value="200">₹2 Cr</option>
+              <option value="500">₹5 Cr</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="fBeds">Beds</label>
+            <select id="fBeds" name="beds">
+              <option value="">Any</option>
+              <option value="1">1+</option>
+              <option value="2">2+</option>
+              <option value="3">3+</option>
+              <option value="4">4+</option>
+              <option value="5">5+</option>
+            </select>
+          </div>
+          <div class="field">
+            <button class="btn btn-primary btn-block" type="submit">🔍</button>
+          </div>
+        </div>
+        <div class="chips" id="typeChips"></div>
+      </form>
+
+      <!-- Results -->
+      <div class="mt-3 toolbar-row">
+        <div class="result-count" id="resultCount"></div>
+        <div class="field" style="min-width:220px">
+          <select id="sortSelect" class="sort-select">
+            <option value="new">Sort: Newest First</option>
+            <option value="lo">Price: Low → High</option>
+            <option value="hi">Price: High → Low</option>
+            <option value="az">Title: A → Z</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid grid-3 mt-2" id="resultsGrid"></div>
+      <div id="emptyState"></div>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/listings.js"></script>
+</body>
+</html>

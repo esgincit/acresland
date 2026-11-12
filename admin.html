@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel — Acres Properties</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="admin" class="admin-body">
+
+  <!-- ============ PASSWORD GATE ============ -->
+  <div class="gate" id="gate">
+    <div class="gate-card">
+      <img src="assets/img/logo.png" alt="Acres Properties">
+      <h2 style="font-size:1.3rem">Admin Panel</h2>
+      <p class="text-muted mt-1" style="font-size:.9rem">Enter the admin password to manage listings and site content.</p>
+      <form class="mt-3" id="gateForm">
+        <div class="field">
+          <input type="password" id="gatePass" placeholder="Admin password" autocomplete="current-password" style="text-align:center">
+        </div>
+        <button class="btn btn-primary btn-block mt-2" type="submit">Unlock Dashboard</button>
+      </form>
+      <p class="mt-2"><a href="index.html" style="color:var(--green-700); font-size:.85rem">← Back to website</a></p>
+    </div>
+  </div>
+
+  <!-- ============ DASHBOARD ============ -->
+  <div class="admin-shell hidden" id="shell">
+    <aside class="admin-side">
+      <div class="brand"><img src="assets/img/logo.png" alt="Acres"></div>
+      <button class="admin-tab-btn active" data-tab="props">🏘️ Properties</button>
+      <button class="admin-tab-btn" data-tab="settings">⚙️ Site Settings</button>
+      <button class="admin-tab-btn" data-tab="data">💾 Export / Import</button>
+      <div style="margin-top:auto; font-size:.75rem; opacity:.7">
+        Phase 1 — browser-stored edits.<br>Export &amp; commit to publish.
+      </div>
+      <a class="btn btn-ghost btn-sm mt-2" href="index.html" target="_blank">View Website ↗</a>
+    </aside>
+
+    <main class="admin-main">
+      <!-- ===== PROPERTIES TAB ===== -->
+      <section id="tab-props">
+        <div class="admin-head">
+          <div>
+            <h2 style="font-size:1.5rem">Properties</h2>
+            <p class="text-muted" style="font-size:.9rem">Add, edit, feature or remove listings. Changes are live on this device instantly.</p>
+          </div>
+          <button class="btn btn-primary" id="addPropBtn">＋ Add Property</button>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr><th>Preview</th><th>Title / Location</th><th>Type</th><th>Status</th><th>Price</th><th>Featured</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="propRows"></tbody>
+        </table>
+      </section>
+
+      <!-- ===== SETTINGS TAB ===== -->
+      <section id="tab-settings" class="hidden">
+        <div class="admin-head">
+          <div>
+            <h2 style="font-size:1.5rem">Site Settings</h2>
+            <p class="text-muted" style="font-size:.9rem">These values populate the header, footer, contact page and all forms.</p>
+          </div>
+          <button class="btn btn-primary" id="saveSettingsBtn">Save Settings</button>
+        </div>
+        <div class="form-card">
+          <h3 style="font-size:1.05rem" class="mb-2">Contact Information</h3>
+          <div class="form-grid">
+            <div class="field"><label>Phone (display)</label><input id="stPhone"></div>
+            <div class="field"><label>WhatsApp number (digits only)</label><input id="stWa" placeholder="919100092000"></div>
+            <div class="field"><label>Email (display)</label><input id="stEmail"></div>
+            <div class="field"><label>formsubmit.co target email</label><input id="stFs"></div>
+            <div class="field"><label>Working hours</label><input id="stHours"></div>
+            <div class="field"><label>Admin password (change it!)</label><input id="stPass"></div>
+            <div class="field full"><label>Address</label><input id="stAddr"></div>
+          </div>
+
+          <h3 style="font-size:1.05rem" class="mt-4 mb-2">Homepage Hero</h3>
+          <div class="form-grid">
+            <div class="field"><label>Eyebrow text</label><input id="stEyebrow"></div>
+            <div class="field"><label>Brand tagline</label><input id="stTagline"></div>
+            <div class="field full"><label>Headline</label><input id="stTitle"></div>
+            <div class="field full"><label>Subtitle</label><textarea id="stSub" rows="3"></textarea></div>
+          </div>
+
+          <h3 style="font-size:1.05rem" class="mt-4 mb-2">Statistics Strip</h3>
+          <div class="form-grid" id="stStatsWrap"></div>
+        </div>
+      </section>
+
+      <!-- ===== DATA TAB ===== -->
+      <section id="tab-data" class="hidden">
+        <div class="admin-head">
+          <div>
+            <h2 style="font-size:1.5rem">Export / Import</h2>
+            <p class="text-muted" style="font-size:.9rem">Edits live in this browser. To publish for all visitors, export and commit the file to GitHub (Phase 2 will move this to a database).</p>
+          </div>
+        </div>
+        <div class="form-card">
+          <div class="flex">
+            <button class="btn btn-primary" id="exportJsonBtn">⬇ Download acres-data.json</button>
+            <button class="btn btn-ghost" id="copyJsonBtn">📋 Copy JSON (paste into data.js)</button>
+            <button class="btn btn-ghost" id="importBtn">⬆ Import JSON</button>
+            <button class="btn btn-danger" id="resetBtn">⟲ Reset to seed data</button>
+          </div>
+          <input type="file" id="importFile" accept=".json" class="hidden">
+          <p class="text-muted mt-2" style="font-size:.85rem">
+            <strong>Publish flow:</strong> Download → replace <code>assets/js/data.js</code> contents (or commit the JSON next to it) → push to GitHub → Vercel redeploys automatically.
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ============ PROPERTY MODAL ============ -->
+  <div class="modal-back" id="propModal">
+    <div class="modal">
+      <div class="modal-head">
+        <h3 id="modalTitle" style="font-size:1.2rem">Add Property</h3>
+        <button class="icon-btn" id="modalClose" style="font-size:1.4rem">✕</button>
+      </div>
+      <form class="form-grid" id="propForm">
+        <input type="hidden" name="id">
+        <div class="field full"><label>Title *</label><input name="title" required placeholder="e.g. 3BHK Apartment — Kondapur"></div>
+        <div class="field">
+          <label>Type *</label>
+          <select name="type"><option>Agriculture</option><option>Commercial</option><option>House</option><option>Apartment</option></select>
+        </div>
+        <div class="field">
+          <label>Status *</label>
+          <select name="status"><option>For Sale</option><option>For Rent</option></select>
+        </div>
+        <div class="field"><label>Price in ₹ Lakhs *</label><input name="price" type="number" step="0.01" min="0" required placeholder="e.g. 85 (₹85 L) or 3.2 (₹3.2 L/mo rent)"></div>
+        <div class="field"><label>Posted date</label><input name="posted" type="date"></div>
+        <div class="field"><label>City *</label><input name="city" required placeholder="e.g. Hyderabad"></div>
+        <div class="field"><label>Locality *</label><input name="locality" required placeholder="e.g. Kondapur"></div>
+        <div class="field"><label>State</label><select name="state"><option>Telangana</option><option>Andhra Pradesh</option></select></div>
+        <div class="field"><label>Agent name</label><input name="agent" value="Mahendar Kadari"></div>
+        <div class="field"><label>Bedrooms</label><input name="beds" type="number" min="0" value="0"></div>
+        <div class="field"><label>Bathrooms</label><input name="baths" type="number" min="0" value="0"></div>
+        <div class="field"><label>Area *</label><input name="area" type="number" step="0.01" min="0" required></div>
+        <div class="field"><label>Area unit</label><select name="areaUnit"><option>Sq.Ft.</option><option>Sq.Yd.</option><option>Acres</option><option>Gunta</option></select></div>
+        <div class="field full"><label>Main image URL *</label><input name="image" required placeholder="https://…"></div>
+        <div class="field full"><label>Gallery image URLs (one per line)</label><textarea name="images" rows="3" placeholder="https://…&#10;https://…"></textarea></div>
+        <div class="field full"><label>Description</label><textarea name="description" rows="4"></textarea></div>
+        <div class="field full"><label>Features / amenities (one per line)</label><textarea name="features" rows="4" placeholder="Borewell&#10;Compound fencing&#10;Clear title"></textarea></div>
+        <div class="full flex" style="justify-content:flex-end">
+          <label class="flex" style="gap:8px; font-size:.9rem">Featured listing
+            <span class="switch"><input type="checkbox" name="featured"><span class="track"></span></span>
+          </label>
+          <button class="btn btn-ghost" type="button" id="modalCancel">Cancel</button>
+          <button class="btn btn-primary" type="submit">Save Property</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>

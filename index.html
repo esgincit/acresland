@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acres Properties — Buy, Sell & Rent Properties in Telangana & Andhra Pradesh</title>
+  <meta name="description" content="Acres Properties — India's trusted property marketplace for agriculture lands, houses, apartments and commercial spaces across Telangana & Andhra Pradesh. Verified listings, honest pricing.">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="index">
+
+  <div id="site-header"></div>
+
+  <!-- ============ HERO + SEARCH ============ -->
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow" id="heroEyebrow">Start searching</span>
+      <h1 id="heroTitle">Find your perfect piece of India</h1>
+      <p id="heroSub">Agriculture lands, houses, apartments and commercial spaces across Telangana &amp; Andhra Pradesh.</p>
+
+      <form class="search-card" id="heroSearch" action="properties.html" method="GET">
+        <div class="search-grid">
+          <div class="field">
+            <label for="sStatus">Property Status</label>
+            <select id="sStatus" name="status">
+              <option value="">Any Status</option>
+              <option value="For Sale">For Sale</option>
+              <option value="For Rent">For Rent</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="sType">Property Type</label>
+            <select id="sType" name="type">
+              <option value="">Any Type</option>
+              <option value="Agriculture">Agriculture</option>
+              <option value="Commercial">Commercial</option>
+              <option value="House">House</option>
+              <option value="Apartment">Apartment</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="sLocation">Location</label>
+            <input id="sLocation" name="location" type="text" placeholder="City, locality or area…">
+          </div>
+          <div class="field">
+            <label for="sMax">Max Budget</label>
+            <select id="sMax" name="max">
+              <option value="">Any Budget</option>
+              <option value="25">Up to ₹25 L</option>
+              <option value="50">Up to ₹50 L</option>
+              <option value="100">Up to ₹1 Cr</option>
+              <option value="200">Up to ₹2 Cr</option>
+              <option value="500">Up to ₹5 Cr</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="sBeds">Beds</label>
+            <select id="sBeds" name="beds">
+              <option value="">Any</option>
+              <option value="1">1+</option>
+              <option value="2">2+</option>
+              <option value="3">3+</option>
+              <option value="4">4+</option>
+              <option value="5">5+</option>
+            </select>
+          </div>
+          <div class="field">
+            <button class="btn btn-primary btn-block" type="submit">🔍 Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ CATEGORIES ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="center mb-3">
+        <span class="eyebrow">Explore</span>
+        <h2 class="section-title">Browse by Property Type</h2>
+        <p class="section-sub">From fertile farmlands to skyline apartments — find the category that fits your next move.</p>
+      </div>
+      <div class="cat-grid" id="catGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURED ============ -->
+  <section class="section" style="background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line)">
+    <div class="container">
+      <div class="flex mb-3" style="justify-content:space-between">
+        <div>
+          <span class="eyebrow">Handpicked</span>
+          <h2 class="section-title">Featured Properties</h2>
+        </div>
+        <a class="btn btn-outline" href="properties.html">View All →</a>
+      </div>
+      <div class="grid grid-3" id="featuredGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ RECENT ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="flex mb-3" style="justify-content:space-between">
+        <div>
+          <span class="eyebrow">Fresh on the market</span>
+          <h2 class="section-title">Recently Added</h2>
+        </div>
+        <a class="btn btn-outline" href="properties.html?sort=new">See Newest →</a>
+      </div>
+      <div class="grid grid-4" id="recentGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ STATS ============ -->
+  <section class="stats-strip section-sm">
+    <div class="container grid" id="statsGrid"></div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="center mb-3">
+        <span class="eyebrow">Simple process</span>
+        <h2 class="section-title">How It Works</h2>
+      </div>
+      <div class="grid grid-4">
+        <div class="step-card">
+          <div class="step-icon">🔍</div>
+          <h3>1. Search</h3>
+          <p class="text-muted mt-1" style="font-size:.9rem">Filter thousands of verified listings by location, budget, type and size.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-icon">📞</div>
+          <h3>2. Connect</h3>
+          <p class="text-muted mt-1" style="font-size:.9rem">Enquire online or WhatsApp us — our agents respond within minutes, 8am–9pm.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-icon">🚜</div>
+          <h3>3. Site Visit</h3>
+          <p class="text-muted mt-1" style="font-size:.9rem">Walk the land or the flat yourself. We arrange free guided site visits.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-icon">🔑</div>
+          <h3>4. Own It</h3>
+          <p class="text-muted mt-1" style="font-size:.9rem">Clear titles, transparent paperwork and registration support end-to-end.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section class="section" style="background:#fff; border-top:1px solid var(--line)">
+    <div class="container">
+      <div class="center mb-3">
+        <span class="eyebrow">Happy clients</span>
+        <h2 class="section-title">What Our Buyers Say</h2>
+      </div>
+      <div class="grid grid-3" id="tstGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-band">
+        <div>
+          <h2>Have a property to sell or lease?</h2>
+          <p style="opacity:.9; margin-top:6px">List it with Acres Properties and reach genuine buyers across two states.</p>
+        </div>
+        <a class="btn" href="contact.html">List Your Property →</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/home.js"></script>
+</body>
+</html>
